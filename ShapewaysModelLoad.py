@@ -7,6 +7,8 @@ import os
 class Shapeways3d:
     wsdl_url = "http://api.shapeways.com/v1/wsdl.php"
     application_id = "rhino3d"
+    username = rs.GetString("enter shapeways username")
+    password = rs.GetString("enter shapeways password")
     assembly = wsdlprovider.GetWebservice(wsdl_url)
     shapelink = assembly.SWwsdlService()
     session_id = shapelink.login(username, password, application_id)
@@ -41,8 +43,6 @@ class Shapeways3d:
 
 if __name__=="__main__":   
     obj = rs.GetObject("object to print",False,False,24,False)
-    username = rs.getstring("enter shapeways username")
-    password = rs.getstring("enter shapeways password")
     rs.ObjectName(obj,"swm.stl")
     rs.UnselectAllObjects()
     rs.Command ("_-Export _selname swm.stl _enter c:\users\public\swm.stl _enter _enter")
